@@ -70,7 +70,6 @@ const config = packageNames
       }
     ]
   })
-  // @ts-ignore
-  .flat()
+  .reduce((arr, arrItem) => [...arr, ...arrItem], [])
 
 export default config
