@@ -1,6 +1,7 @@
 {
   "scripts": {
     "test": "jest",
+    "test:ci": "jest --runInBand --ci",
     "build": "pnpm clean:build && rollup -c",
     "clean:build": "rimraf ./packages/*/dist/"
   },
