@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`compiler should compilation throw an error on unknown ident 1`] = `"Unknown context identifier: aa"`;
+
+exports[`compiler should compilation throw an error on unknown ident with a custom context accessor 1`] = `"Unknown context identifier: unknown"`;
+
+exports[`compiler should compile interpolated code 1`] = `
+Object {
+  "age": 30,
+  "favoriteFruit": "apple",
+  "fruits": Array [
+    "apple",
+    "strawberry",
+  ],
+  "name": "Jhon doe",
+}
+`;
+
+exports[`compiler should compile valid code 1`] = `
+Object {
+  "[complex-key-brackets]": 40,
+  "age": 40,
+  "escap'ing": "escaped",
+  "matches": Array [
+    Object {
+      "age": 40,
+      "name": "Test",
+    },
+    Object {
+      "age": 40,
+      "name": "Test",
+    },
+    Object {
+      "age": 40,
+      "name": "Test",
+    },
+    Object {
+      "age": 40,
+      "name": "Test",
+    },
+    Object {
+      "age": 40,
+      "name": "Test",
+    },
+    Object {
+      "age": 40,
+      "name": "Test",
+    },
+  ],
+  "name": "Test",
+  "{complex-key-braces}": "Test",
+}
+`;
+
+exports[`compiler should compile with given custom context accessor 1`] = `
+Object {
+  "a": "a",
+  "bb": "bb",
+  "ccc": "ccc",
+}
+`;
+
+exports[`compiler should compile with merged contexts 1`] = `
+Object {
+  "aa": "aa",
+  "age": 40,
+  "name": "Test",
+}
+`;

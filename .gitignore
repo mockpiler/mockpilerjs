@@ -1,0 +1,8 @@
+# NPM modules
+node_modules/
+
+# Ignore distribution files
+dist/
+
+# Ignore MacOS things
+.DS_Store/

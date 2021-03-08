@@ -1,0 +1,28 @@
+{
+  "name": "@mockpiler/code-frame",
+  "version": "0.1.0",
+  "description": "Code-frame generator used internally by MockpilerJS",
+  "main": "dist/mockpiler-code-frame.cjs.js",
+  "module": "dist/mockpiler-code-frame.esm.js",
+  "types": "dist/mockpiler-code-frame.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mockpiler/mockpilerjs.git",
+    "directory": "packages/code-frame"
+  },
+  "author": "Camilo Rodríguez <aeroxmotion@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mockpiler/mockpilerjs/issues"
+  },
+  "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/code-frame#readme",
+  "dependencies": {
+    "@mockpiler/lexer": "^0.1.0"
+  },
+  "peerDependencies": {
+    "@mockpiler/lexer": "^0.1.0"
+  }
+}

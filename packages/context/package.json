@@ -1,0 +1,22 @@
+{
+  "name": "@mockpiler/context",
+  "version": "0.1.0",
+  "description": "Context utils used internally by MockpilerJS",
+  "main": "dist/mockpiler-context.cjs.js",
+  "module": "dist/mockpiler-context.esm.js",
+  "types": "dist/mockpiler-context.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mockpiler/mockpilerjs.git",
+    "directory": "packages/context"
+  },
+  "author": "Camilo Rodríguez <aeroxmotion@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mockpiler/mockpilerjs/issues"
+  },
+  "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/context#readme"
+}

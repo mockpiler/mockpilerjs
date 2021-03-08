@@ -1,0 +1,26 @@
+{
+  "name": "@mockpiler/parser",
+  "version": "0.1.0",
+  "description": "AST Parser used by MockpilerJS",
+  "main": "dist/mockpiler-parser.cjs.js",
+  "module": "dist/mockpiler-parser.esm.js",
+  "types": "dist/mockpiler-parser.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mockpiler/mockpilerjs.git",
+    "directory": "packages/parser"
+  },
+  "author": "Camilo Rodríguez <aeroxmotion@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mockpiler/mockpilerjs/issues"
+  },
+  "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/parser#readme",
+  "dependencies": {
+    "@mockpiler/code-frame": "^0.1.0",
+    "@mockpiler/lexer": "^0.1.0"
+  }
+}

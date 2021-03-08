@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`context should contextualize template correctly 1`] = `
+"
+  {
+    key: '__mockpiler__x5lpkkh82qk_0'
+    array: [
+      (2) {
+        obj: '__mockpiler__x5lpkkh82qk_1'
+      }
+    ]
+  }
+"
+`;
+
+exports[`context should contextualize template correctly 2`] = `
+Object {
+  "__mockpiler__x5lpkkh82qk_0": "value",
+  "__mockpiler__x5lpkkh82qk_1": Object {
+    "n": 10,
+  },
+}
+`;

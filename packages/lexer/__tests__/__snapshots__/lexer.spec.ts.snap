@@ -1,0 +1,370 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lexer should scan valid code 1`] = `
+Array [
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 4,
+        "line": 2,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 2,
+      },
+    },
+    "type": "object",
+    "value": "{",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 9,
+        "line": 3,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 3,
+      },
+    },
+    "type": "identifier",
+    "value": "name",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 8,
+        "line": 4,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 4,
+      },
+    },
+    "type": "identifier",
+    "value": "age",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 27,
+        "line": 5,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 5,
+      },
+    },
+    "type": "identifier",
+    "value": "'{complex-key-braces}'",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 28,
+        "line": 5,
+      },
+      "start": Object {
+        "column": 27,
+        "line": 5,
+      },
+    },
+    "type": "object",
+    "value": ":",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 33,
+        "line": 5,
+      },
+      "start": Object {
+        "column": 29,
+        "line": 5,
+      },
+    },
+    "type": "identifier",
+    "value": "name",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 29,
+        "line": 6,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 6,
+      },
+    },
+    "type": "identifier",
+    "value": "'[complex-key-brackets]'",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 30,
+        "line": 6,
+      },
+      "start": Object {
+        "column": 29,
+        "line": 6,
+      },
+    },
+    "type": "object",
+    "value": ":",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 34,
+        "line": 6,
+      },
+      "start": Object {
+        "column": 31,
+        "line": 6,
+      },
+    },
+    "type": "identifier",
+    "value": "age",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 12,
+        "line": 7,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 7,
+      },
+    },
+    "type": "identifier",
+    "value": "matches",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 13,
+        "line": 7,
+      },
+      "start": Object {
+        "column": 12,
+        "line": 7,
+      },
+    },
+    "type": "object",
+    "value": ":",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 15,
+        "line": 7,
+      },
+      "start": Object {
+        "column": 14,
+        "line": 7,
+      },
+    },
+    "type": "array",
+    "value": "[",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 13,
+        "line": 8,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 8,
+      },
+    },
+    "type": "identifier",
+    "value": "person",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 10,
+        "line": 9,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 9,
+      },
+    },
+    "type": "spread",
+    "value": "...",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 16,
+        "line": 9,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 9,
+      },
+    },
+    "type": "identifier",
+    "value": "people",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 8,
+        "line": 10,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 10,
+      },
+    },
+    "type": "count",
+    "value": "(",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 9,
+        "line": 10,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 10,
+      },
+    },
+    "type": "countNumber",
+    "value": 3,
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 10,
+        "line": 10,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 10,
+      },
+    },
+    "type": "count",
+    "value": ")",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 12,
+        "line": 10,
+      },
+      "start": Object {
+        "column": 11,
+        "line": 10,
+      },
+    },
+    "type": "object",
+    "value": "{",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 13,
+        "line": 11,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 11,
+      },
+    },
+    "type": "identifier",
+    "value": "name",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 12,
+        "line": 12,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 12,
+      },
+    },
+    "type": "identifier",
+    "value": "age",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 8,
+        "line": 13,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 13,
+      },
+    },
+    "type": "object",
+    "value": "}",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 6,
+        "line": 14,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 14,
+      },
+    },
+    "type": "array",
+    "value": "]",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 17,
+        "line": 15,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 15,
+      },
+    },
+    "type": "identifier",
+    "value": "'escap'ing'",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 4,
+        "line": 16,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 16,
+      },
+    },
+    "type": "object",
+    "value": "}",
+  },
+  Object {
+    "location": Object {
+      "end": Object {
+        "column": 1,
+        "line": 17,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 17,
+      },
+    },
+    "type": "EOF",
+    "value": "",
+  },
+]
+`;

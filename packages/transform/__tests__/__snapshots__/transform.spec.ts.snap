@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transform should apply ToMap transform correctly 1`] = `
+Map {
+  "key" => "value",
+  Object {} => Array [],
+}
+`;
+
+exports[`transform should apply ToMap transform correctly 2`] = `
+Map {
+  "name" => "John Doe",
+  "age" => 33,
+}
+`;
+
+exports[`transform should apply ToSet transform correctly 1`] = `
+Set {
+  "name",
+  "John Doe",
+  "age",
+  33,
+}
+`;

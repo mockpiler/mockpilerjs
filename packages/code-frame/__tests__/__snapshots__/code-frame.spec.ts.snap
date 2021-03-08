@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`code-frame generate valid code-frame 1`] = `
+"
+   5|      anotherNestedValue
+   6|    ]
+   7|    someNestedObject: {
+   8|      someNestedProperty
+>  9|      test-anotherNested: property
+    |      ^^^^^^^^^^^^^^^^^^
+  10|    }
+  11|    anotherNestedArray: [
+  12|      someNestedValue
+  13|      anotherNestedValue"
+`;

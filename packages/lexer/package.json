@@ -1,0 +1,22 @@
+{
+  "name": "@mockpiler/lexer",
+  "version": "0.1.0",
+  "description": "Lexical Analyzer for MockpilerJS",
+  "main": "dist/mockpiler-lexer.cjs.js",
+  "module": "dist/mockpiler-lexer.esm.js",
+  "types": "dist/mockpiler-lexer.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mockpiler/mockpilerjs.git",
+    "directory": "packages/lexer"
+  },
+  "author": "Camilo Rodríguez <aeroxmotion@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mockpiler/mockpilerjs/issues"
+  },
+  "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/lexer#readme"
+}

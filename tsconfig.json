@@ -1,0 +1,8 @@
+{
+  "exclude": ["**/__tests__"],
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "moduleResolution": "node"
+  }
+}
