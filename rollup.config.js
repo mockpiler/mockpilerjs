@@ -7,6 +7,7 @@ import dts from 'rollup-plugin-dts'
 
 const PACKAGES_PATH = path.join(__dirname, 'packages')
 
+const typeCompilerPackageName = 'type-compiler'
 // Note: Here we can use fs.readdirSync, but we want
 // to keep order of packages for declaration files
 const packageNames = [
@@ -15,7 +16,8 @@ const packageNames = [
   'parser',
   'context',
   'transform',
-  'compiler'
+  'compiler',
+  typeCompilerPackageName
 ]
 
 /**
@@ -34,6 +36,7 @@ const globalPlugins = [
 const config = packageNames
   .map(packageName => {
     const packagePath = path.join(PACKAGES_PATH, packageName)
+    const isTypeCompilerPackageName = packageName === typeCompilerPackageName
 
     /**
      * @param {import('rollup').ModuleFormat} format
@@ -50,10 +53,24 @@ const config = packageNames
       format
     })
 
-    const packageInputFile = path.resolve(packagePath, './src/index.ts')
+    const packageInputFile = path.resolve(
+      packagePath,
+      `./src/index${isTypeCompilerPackageName ? '.d' : ''}.ts`
+    )
 
-    return [
+    /**
+     * @type {import('rollup').RollupOptions[]}
+     */
+    const configs = [
       {
+        input: packageInputFile,
+        plugins: [dts()],
+        output: getOutputOptions('es')
+      }
+    ]
+
+    if (!isTypeCompilerPackageName) {
+      configs.unshift({
         input: packageInputFile,
         plugins: [
           nodeExternals({
@@ -62,13 +79,10 @@ const config = packageNames
           ...globalPlugins
         ],
         output: [getOutputOptions('esm'), getOutputOptions('cjs')]
-      },
-      {
-        input: packageInputFile,
-        plugins: [dts()],
-        output: getOutputOptions('es')
-      }
-    ]
+      })
+    }
+
+    return configs
   })
   .reduce((arr, arrItem) => [...arr, ...arrItem], [])
 

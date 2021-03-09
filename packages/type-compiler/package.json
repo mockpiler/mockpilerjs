@@ -1,0 +1,28 @@
+{
+  "name": "@mockpiler/type-compiler",
+  "version": "0.1.0",
+  "description": "Types compilation for MockpilerJS",
+  "main": "dist/mockpiler-type-compiler.d.ts",
+  "module": "dist/mockpiler-type-compiler.d.ts",
+  "types": "dist/mockpiler-type-compiler.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mockpiler/mockpilerjs.git",
+    "directory": "packages/type-compiler"
+  },
+  "author": "Camilo Rodríguez <aeroxmotion@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mockpiler/mockpilerjs/issues"
+  },
+  "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/type-compiler#readme",
+  "dependencies": {
+    "@mockpiler/lexer": "^0.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^4.1.0"
+  }
+}
