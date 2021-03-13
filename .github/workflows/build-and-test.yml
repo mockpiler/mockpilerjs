@@ -39,7 +39,10 @@ jobs:
           version: 5.18.4
           run_install: true
 
-      - run: pnpm build
-      - run: pnpm test:ci
+      - name: Build packages
+        run: pnpm build
+
+      - name: Run tests
+        run: pnpm test:ci
         env:
           CI: true
