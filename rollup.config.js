@@ -2,7 +2,7 @@
 import * as path from 'path'
 import nodeExternals from 'rollup-plugin-node-externals'
 import nodeResolve from '@rollup/plugin-node-resolve'
-import typescript from 'rollup-plugin-typescript2'
+import esbuild from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 
 const PACKAGES_PATH = path.join(__dirname, 'packages')
@@ -23,12 +23,7 @@ const packageNames = [
 /**
  * @type {import('rollup').RollupOptions['plugins']}
  */
-const globalPlugins = [
-  nodeResolve(),
-  typescript({
-    useTsconfigDeclarationDir: false
-  })
-]
+const globalPlugins = [nodeResolve(), esbuild()]
 
 /**
  * @type {import('rollup').RollupOptions[]}

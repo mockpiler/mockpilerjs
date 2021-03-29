@@ -2,7 +2,7 @@
   "exclude": ["**/__tests__"],
   "compilerOptions": {
     "strict": true,
-    "target": "ES5",
+    "target": "ES2015",
     "moduleResolution": "node"
   }
 }
