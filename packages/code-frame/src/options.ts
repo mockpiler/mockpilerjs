@@ -42,7 +42,7 @@ export type CodeFrameOptions = {
    * Escaped chars in token values
    *
    * IMPORTANT: This shouldn't be modified in user-land code
-   * -- unless you know what are you doing
+   * -- unless you know what you are doing
    */
   __internal_escapedChars?: Record<string, string>
 }
