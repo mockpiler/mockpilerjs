@@ -160,7 +160,7 @@ export class Parser {
       properties.push(this.parseSpread() ?? this.parseProperty())
     }
 
-    expect(TokenChar.objectEndToken)
+    this.expect(TokenChar.objectEndToken)
 
     const endLocation = shallowClone(this.current().location.end)
 
