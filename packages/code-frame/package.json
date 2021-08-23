@@ -1,6 +1,6 @@
 {
   "name": "@mockpiler/code-frame",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Code-frame generator used internally by MockpilerJS",
   "main": "dist/mockpiler-code-frame.cjs.js",
   "module": "dist/mockpiler-code-frame.esm.js",

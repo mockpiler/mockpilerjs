@@ -1,6 +1,6 @@
 {
   "name": "@mockpiler/compiler",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Core functionality for MockpilerJS",
   "main": "dist/mockpiler-compiler.cjs.js",
   "module": "dist/mockpiler-compiler.esm.js",

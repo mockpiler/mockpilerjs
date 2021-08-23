@@ -1,6 +1,6 @@
 {
   "name": "@mockpiler/transform",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lexical-based value tranformations for MockpilerJS",
   "main": "dist/mockpiler-transform.cjs.js",
   "module": "dist/mockpiler-transform.esm.js",

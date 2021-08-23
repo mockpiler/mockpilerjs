@@ -1,6 +1,6 @@
 {
   "name": "@mockpiler/context",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Context utils used internally by MockpilerJS",
   "main": "dist/mockpiler-context.cjs.js",
   "module": "dist/mockpiler-context.esm.js",
