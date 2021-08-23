@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/parser#readme",
   "dependencies": {
-    "@mockpiler/code-frame": "^0.1.0",
-    "@mockpiler/lexer": "^0.1.0"
+    "@mockpiler/code-frame": "workspace:^0.1.0",
+    "@mockpiler/lexer": "workspace:^0.1.0"
   }
 }

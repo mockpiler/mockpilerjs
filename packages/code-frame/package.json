@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/code-frame#readme",
   "dependencies": {
-    "@mockpiler/lexer": "^0.1.0"
+    "@mockpiler/lexer": "workspace:^0.1.0"
   },
   "peerDependencies": {
     "@mockpiler/lexer": "^0.1.0"

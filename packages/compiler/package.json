@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/mockpiler/mockpilerjs#readme",
   "dependencies": {
-    "@mockpiler/context": "^0.1.0",
-    "@mockpiler/lexer": "^0.1.0",
-    "@mockpiler/parser": "^0.1.0",
+    "@mockpiler/context": "workspace:^0.1.0",
+    "@mockpiler/lexer": "workspace:^0.1.0",
+    "@mockpiler/parser": "workspace:^0.1.0",
     "@mockpiler/transform": "workspace:^0.1.0"
   }
 }
