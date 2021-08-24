@@ -18,18 +18,26 @@ $ pnpm add @mockpiler/compiler
 ## Usage
 
 ```js
-import { mock } from '@mockpiler/compiler'
+import { mock, helpers as contextHelpers } from '@mockpiler/compiler'
 
 const context = {
   name: 'John Doe',
   randomAge() {
     return Math.floor(Math.random() * 100)
   },
-  randomFruit() {
-    const fruits = ['watermelon', 'strawberry', 'pineapple', 'apple']
-
-    return fruits[Math.floor(Math.random() * fruits.length)]
-  }
+  randomFruit: contextHelpers.pick([
+    'watermelon',
+    'strawberry',
+    'pineapple',
+    'apple'
+  ])
+  // Same as:
+  //
+  // randomFruit() {
+  //  const fruits = ['watermelon', 'strawberry', 'pineapple', 'apple']
+  //
+  //  return fruits[Math.floor(Math.random() * fruits.length)]
+  // }
 }
 
 const people = mock(context)`
@@ -85,3 +93,7 @@ console.log(people)
  * ]
  */
 ```
+
+## Context helpers
+
+See documentation for the API and usage [here](./packages/context/README.md#helpers)
