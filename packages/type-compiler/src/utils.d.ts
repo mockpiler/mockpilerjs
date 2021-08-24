@@ -22,3 +22,21 @@ export type ContextType<Context, Key> = Key extends keyof Context
   : Key extends object
   ? Key
   : any
+
+export type ContextArrayType<Context, Key> = ContextType<
+  Context,
+  Key
+> extends infer Value
+  ? Value extends any[]
+    ? Value
+    : []
+  : never
+
+export type ContextObjectType<Context, Key> = ContextType<
+  Context,
+  Key
+> extends infer Value
+  ? Value extends object
+    ? Value
+    : {}
+  : never

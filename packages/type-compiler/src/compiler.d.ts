@@ -7,7 +7,14 @@ import {
   LeftIdentifierChars,
   DecrementCounter
 } from './constants'
-import { TrimStart, Merge, NormalizeNumber, ContextType } from './utils'
+import {
+  TrimStart,
+  Merge,
+  NormalizeNumber,
+  ContextType,
+  ContextArrayType,
+  ContextObjectType
+} from './utils'
 
 export type CompileError<
   Scope extends string,
@@ -92,6 +99,14 @@ export type CompileArray<
         : never
       : CompileError<'Count', 'Error parsing count'>
     : CompileError<'Array Element', '1 Expecting object, array or identifier'>
+  : TrimStart<Elements> extends `${TokenChar.spreadToken}${TokenChar.spreadToken}${TokenChar.spreadToken}${infer RestSpread}`
+  ? CompileIdent<RestSpread> extends [infer Ident, infer Rest]
+    ? CompileArray<
+        Rest,
+        Context,
+        [...Result, ...ContextArrayType<Context, Ident>]
+      >
+    : CompileError<'Array Element', 'Expecting identifier on spread expression'>
   : CompileValue<Elements, Context> extends [infer Value, infer Rest]
   ? CompileArray<Rest, Context, [...Result, ContextType<Context, Value>]>
   : CompileError<'Array Element', '2 Expecting object, array or identifier'>
@@ -132,6 +147,17 @@ export type CompileObject<
         Rest,
         Context,
         Merge<Result & { [K in Key & string]: ContextType<Context, Key> }>
+      >
+  : TrimStart<Properties> extends `${TokenChar.spreadToken}${TokenChar.spreadToken}${TokenChar.spreadToken}${infer RestSpread}`
+  ? CompileIdent<RestSpread> extends [infer Ident, infer Rest]
+    ? CompileObject<
+        Rest,
+        Context,
+        Merge<Result & ContextObjectType<Context, Ident>>
+      >
+    : CompileError<
+        'Object Property',
+        'Expecting identifier on spread expression'
       >
   : CompileError<'Object Property', '2 Expecting object, array or identifier'>
 
