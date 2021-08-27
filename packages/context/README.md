@@ -119,3 +119,32 @@ const context = {
 context.number() // => 30
 context.number() // subsequent calls gets the same value => 30
 ```
+
+### Definitions
+
+#### `context function`
+
+A `context function` is just a function that returns a value. It can be used to generate a random value,
+access nested values, etc.
+
+```ts
+const context = {
+  number: () => Math.random() * 100
+}
+
+mock(context)`
+  {
+    id: number
+  }
+`
+```
+
+`Mockpiler` automatically will catch any `context function`s in the `mock` definition and call them before generating the mock.
+
+The previous example will generate something like:
+
+```json
+{
+  "id": 30
+}
+```
