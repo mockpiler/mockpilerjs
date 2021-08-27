@@ -1,6 +1,6 @@
 {
   "name": "@mockpiler/parser",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "AST Parser used by MockpilerJS",
   "main": "dist/mockpiler-parser.cjs.js",
   "module": "dist/mockpiler-parser.esm.js",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/parser#readme",
   "dependencies": {
-    "@mockpiler/code-frame": "workspace:^0.1.0",
-    "@mockpiler/lexer": "workspace:^0.1.0"
+    "@mockpiler/code-frame": "workspace:^0.2.0",
+    "@mockpiler/lexer": "workspace:^0.2.0"
   }
 }

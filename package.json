@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "prepublishOnly": "pnpm run build && pnpm run test",
     "test": "jest",
     "test:ci": "jest --runInBand --ci",
     "test:dts": "tsd ./packages/type-compiler",

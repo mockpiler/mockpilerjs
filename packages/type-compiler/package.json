@@ -1,6 +1,6 @@
 {
   "name": "@mockpiler/type-compiler",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Types compilation for MockpilerJS",
   "main": "dist/mockpiler-type-compiler.d.ts",
   "module": "dist/mockpiler-type-compiler.d.ts",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/type-compiler#readme",
   "dependencies": {
-    "@mockpiler/lexer": "^0.1.0"
+    "@mockpiler/lexer": "workspace:^0.2.0"
   },
   "peerDependencies": {
     "typescript": "^4.1.0"

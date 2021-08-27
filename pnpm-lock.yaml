@@ -36,16 +36,16 @@ importers:
 
   packages/code-frame:
     specifiers:
-      '@mockpiler/lexer': workspace:^0.1.0
+      '@mockpiler/lexer': workspace:^0.2.0
     dependencies:
       '@mockpiler/lexer': link:../lexer
 
   packages/compiler:
     specifiers:
-      '@mockpiler/context': workspace:^0.1.0
-      '@mockpiler/lexer': workspace:^0.1.0
-      '@mockpiler/parser': workspace:^0.1.0
-      '@mockpiler/transform': workspace:^0.1.0
+      '@mockpiler/context': workspace:^0.2.0
+      '@mockpiler/lexer': workspace:^0.2.0
+      '@mockpiler/parser': workspace:^0.2.0
+      '@mockpiler/transform': workspace:^0.2.0
     dependencies:
       '@mockpiler/context': link:../context
       '@mockpiler/lexer': link:../lexer
@@ -60,23 +60,23 @@ importers:
 
   packages/parser:
     specifiers:
-      '@mockpiler/code-frame': workspace:^0.1.0
-      '@mockpiler/lexer': workspace:^0.1.0
+      '@mockpiler/code-frame': workspace:^0.2.0
+      '@mockpiler/lexer': workspace:^0.2.0
     dependencies:
       '@mockpiler/code-frame': link:../code-frame
       '@mockpiler/lexer': link:../lexer
 
   packages/transform:
     specifiers:
-      '@mockpiler/code-frame': ^0.1.0
-      '@mockpiler/lexer': ^0.1.0
+      '@mockpiler/code-frame': workspace:^0.2.0
+      '@mockpiler/lexer': workspace:^0.2.0
     dependencies:
       '@mockpiler/code-frame': link:../code-frame
       '@mockpiler/lexer': link:../lexer
 
   packages/type-compiler:
     specifiers:
-      '@mockpiler/lexer': ^0.1.0
+      '@mockpiler/lexer': workspace:^0.2.0
     dependencies:
       '@mockpiler/lexer': link:../lexer
 
