@@ -66,6 +66,13 @@ describe('helpers', () => {
     expect(getNestedValue.call(obj)).toBe('value')
   })
 
-  // Test misc (currently unused by me)
-  test.todo('cacheFirst')
+  // Test misc
+  test('misc#cacheFirst', () => {
+    const pickFirstRandom = helpers.cacheFirst(helpers.pick([1, 2, 3]))
+    const first = pickFirstRandom()
+
+    for (let run = 0; run < 10; run++) {
+      expect(pickFirstRandom()).toBe(first)
+    }
+  })
 })
