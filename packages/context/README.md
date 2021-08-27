@@ -13,7 +13,7 @@ import { helpers } from '@mockpiler/context'
 
 #### `pick(array[, indexPicker])`
 
-Generates a `context function` to randomly pick an item from the given `array`. You can optionally pass an `indexPicker` function to customize the selection.
+Generates a [context function][] to randomly pick an item from the given `array`. You can optionally pass an `indexPicker` function to customize the selection.
 
 **Usage:**
 
@@ -29,7 +29,7 @@ helpers.firstLetter() // Always get first item => 'a'
 
 #### `tape(array)`
 
-Generates a `context function` to sequentially pick an item from the given `array`. After reaching the last item, it will start picking again from the beginning.
+Generates a [context function][] to sequentially pick an item from the given `array`. After reaching the last item, it will start picking again from the beginning.
 
 **Usage:**
 
@@ -45,7 +45,7 @@ context.number() // => 'one' again
 
 #### `index(array)`
 
-Generates a `context function` to randomly get an index from the given `array`.
+Generates a [context function][] to randomly get an index from the given `array`.
 
 ```ts
 const context = {
@@ -59,7 +59,7 @@ context.index() // Randomly => 1
 
 #### `lottery(object[, keys])`
 
-Generates a `context function` to randomly pick a value from the given `object`. Optionally, you can pass an array of keys to pick from.
+Generates a [context function][] to randomly pick a value from the given `object`. Optionally, you can pass an array of keys to pick from.
 
 ```ts
 const user = {
@@ -78,9 +78,9 @@ context.userName() // Always get => 'John Doe'
 
 #### `path(keyPath)`
 
-Generates a `context function` to access nested values by using a dot-delimited `keyPath`.
+Generates a [context function][] to access nested values by using a dot-delimited `keyPath`.
 
-**Note:** It also handles accesses to `context function`s by calling them before accessing their return values.
+**Note:** It also handles accesses to [context function][]s by calling them before accessing their return values.
 
 ```ts
 const context = {
@@ -107,7 +107,7 @@ context.imageWidth() // => 100
 
 #### `cacheFirst(fn)`
 
-Generates a `context function` to cache the first result from a given `context function`.
+Generates a [context function][] to cache the first result from a given [context function][].
 
 ```ts
 const randomNumber = helpers.pick([30, 50, 100, 40, 80])
@@ -122,7 +122,7 @@ context.number() // subsequent calls gets the same value => 30
 
 ### Definitions
 
-#### `context function`
+#### Context Function
 
 A `context function` is just a function that returns a value. It can be used to generate a random value,
 access nested values, etc.
@@ -148,3 +148,5 @@ The previous example will generate something like:
   "id": 30
 }
 ```
+
+[context function]: #context-function
