@@ -39,11 +39,11 @@ jobs:
           version: 5.18.4
           run_install: true
 
-      - name: Type-check
-        run: pnpm type-check
-
       - name: Build packages
         run: pnpm build
+
+      - name: Type-check
+        run: pnpm type-check
 
       - name: Run tests
         run: pnpm test:ci
