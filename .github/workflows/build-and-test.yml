@@ -12,9 +12,9 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 10.x
           - 12.x
           - 14.x
+          - 16.x
 
     steps:
       - uses: actions/checkout@v2
@@ -38,6 +38,9 @@ jobs:
         with:
           version: 5.18.4
           run_install: true
+
+      - name: Type-check
+        run: pnpm type-check
 
       - name: Build packages
         run: pnpm build
