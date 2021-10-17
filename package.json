@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "prepublishOnly": "pnpm run build && pnpm run test",
+    "prepublishOnly": "pnpm type-check && pnpm build && pnpm test",
     "test": "jest",
     "test:ci": "jest --runInBand --ci",
     "test:dts": "tsd ./packages/type-compiler",
+    "type-check": "pnpx tsc --noEmit",
     "build": "pnpm clean:build && rollup -c",
     "clean:build": "rimraf ./packages/*/dist/"
   },
