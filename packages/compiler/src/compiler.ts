@@ -160,8 +160,5 @@ export class Compiler {
 }
 
 export function compileMock(input: string, context: MockContext) {
-  const tokens = scan(input)
-  const rootNode = parse(tokens)
-
-  return new Compiler(rootNode, context).compile()
+  return new Compiler(parse(input), context).compile()
 }

@@ -368,3 +368,16 @@ Array [
   },
 ]
 `;
+
+exports[`lexer should throw on unknown token 1`] = `
+"
+
+  1|
+  2|  {
+> 3|    test,
+   |        ^
+  4|  }
+  5|
+
+Unknown token ',' at 3:9"
+`;

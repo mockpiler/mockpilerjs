@@ -37,14 +37,6 @@ export type CodeFrameOptions = {
    * Lines below the highlighted line
    */
   maxBottomLines?: number
-
-  /**
-   * Escaped chars in token values
-   *
-   * IMPORTANT: This shouldn't be modified in user-land code
-   * -- unless you know what you are doing
-   */
-  __internal_escapedChars?: Record<string, string>
 }
 
 export const defaultCodeFrameOptions: Required<CodeFrameOptions> = {
@@ -53,11 +45,7 @@ export const defaultCodeFrameOptions: Required<CodeFrameOptions> = {
   lineNumberIndicator: '>',
   fragmentIndicator: '^',
   maxTopLines: 4,
-  maxBottomLines: 4,
-  __internal_escapedChars: {
-    '\n': 'n',
-    '\t': 't'
-  }
+  maxBottomLines: 4
 }
 
 export function setDefaultCodeFrameOptions(defaultOptions: CodeFrameOptions) {

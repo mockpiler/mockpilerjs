@@ -35,10 +35,7 @@ importers:
       typescript: 4.3.5
 
   packages/code-frame:
-    specifiers:
-      '@mockpiler/lexer': workspace:^0.2.0
-    dependencies:
-      '@mockpiler/lexer': link:../lexer
+    specifiers: {}
 
   packages/compiler:
     specifiers:
@@ -56,7 +53,10 @@ importers:
     specifiers: {}
 
   packages/lexer:
-    specifiers: {}
+    specifiers:
+      '@mockpiler/code-frame': workspace:^0.2.0
+    dependencies:
+      '@mockpiler/code-frame': link:../code-frame
 
   packages/parser:
     specifiers:

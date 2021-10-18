@@ -18,11 +18,5 @@
   "bugs": {
     "url": "https://github.com/mockpiler/mockpilerjs/issues"
   },
-  "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/code-frame#readme",
-  "dependencies": {
-    "@mockpiler/lexer": "workspace:^0.2.0"
-  },
-  "peerDependencies": {
-    "@mockpiler/lexer": "^0.2.0"
-  }
+  "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/code-frame#readme"
 }

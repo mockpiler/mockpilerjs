@@ -1,12 +1,15 @@
-import { Token } from '@mockpiler/lexer'
-
-import { CodeFrameBuffer } from './buffer'
 import { CodeFrameOptions, defaultCodeFrameOptions } from './options'
-import { getPadding } from './utils'
+import { CharRepeater } from './utils'
+
+export type CodeFrameLocation = {
+  line: number
+  startColumn: number
+  endColumn: number
+}
 
 export function generateCodeFrame(
-  tokens: Token[],
-  highlightTokenIndex: number,
+  source: string,
+  location: CodeFrameLocation,
   options: CodeFrameOptions = {}
 ) {
   const mergedOptions = Object.assign(
@@ -14,105 +17,64 @@ export function generateCodeFrame(
     defaultCodeFrameOptions,
     options
   ) as Required<CodeFrameOptions>
+  const charRepeater = new CharRepeater(mergedOptions)
 
-  const { location: highlightLocation, value: highlightValue } = tokens[
-    highlightTokenIndex
-  ]
+  const startLineIndex = Math.max(
+    location.line - 1 - mergedOptions.maxTopLines,
+    0
+  )
+  const targetLineIndex = location.line - startLineIndex
 
-  const MIN_LINE = Math.max(
-    highlightLocation.start.line - mergedOptions.maxTopLines,
-    1
+  let lines = source.split(/\r?\n/)
+
+  const maxLine = Math.min(
+    location.line + mergedOptions.maxBottomLines,
+    lines.length
   )
 
-  const MAX_LINE = Math.min(
-    highlightLocation.start.line + mergedOptions.maxBottomLines,
-    tokens[tokens.length - 1].location.start.line
+  // Limit by top/bottom max lines
+  lines = lines.slice(startLineIndex, maxLine)
+
+  lines.splice(
+    targetLineIndex,
+    0,
+    charRepeater.get('padding', location.startColumn - 1) +
+      charRepeater.get(
+        'fragmentIndicator',
+        location.endColumn - location.startColumn
+      )
   )
 
-  const buffer = new CodeFrameBuffer(MIN_LINE, MAX_LINE, mergedOptions)
-
-  buffer.addLine(highlightLocation.start.line, highlightValue)
-
-  let upperIndex = highlightTokenIndex - 1
-  let lowerIndex = highlightTokenIndex + 1
-
-  let upperToken: Token
-  let lowerToken: Token
-
-  let prevUpperTokenStartLocation = highlightLocation.start
-  let prevLowerTokenEndLocation = highlightLocation.end
-
-  /**
-   * Build upper code block
-   */
-  while (
-    upperIndex >= 0 &&
-    (upperToken = tokens[upperIndex--]).location.start.line >= MIN_LINE
-  ) {
-    const {
-      value,
-      location: { start, end }
-    } = upperToken
-
-    if (buffer.hasLine(start.line)) {
-      buffer.prependToLine(
-        start.line,
-        value,
-        getPadding(
-          mergedOptions.padding,
-          prevUpperTokenStartLocation.column - end.column
-        )
-      )
-    } else {
-      buffer.addLine(start.line, value)
-      buffer.prependToLine(
-        prevUpperTokenStartLocation.line,
-        getPadding(
-          mergedOptions.padding,
-          prevUpperTokenStartLocation.column - 1
-        )
-      )
-    }
-
-    prevUpperTokenStartLocation = start
-  }
-
-  buffer.prependToLine(
-    prevUpperTokenStartLocation.line,
-    getPadding(mergedOptions.padding, prevUpperTokenStartLocation.column - 1)
+  const lineNumberPrefixPadding = charRepeater.get(
+    'padding',
+    String(maxLine).length
   )
 
-  /**
-   * Build lower code block
-   */
-  while (
-    lowerIndex < tokens.length &&
-    (lowerToken = tokens[lowerIndex++]).location.start.line <= MAX_LINE
-  ) {
-    const {
-      value,
-      location: { start, end }
-    } = lowerToken
+  const getLineNumber = (index: number) =>
+    startLineIndex + index + (index > targetLineIndex ? 0 : 1)
 
-    if (!buffer.hasLine(start.line)) {
-      buffer.addLine(
-        start.line,
-        getPadding(mergedOptions.padding, start.column - 1),
-        value
+  const getLineNumberIndicatorPrefix = (index: number) =>
+    index === targetLineIndex - 1
+      ? charRepeater.get('lineNumberIndicator') + charRepeater.get('padding')
+      : charRepeater.get('padding', 2)
+
+  return lines
+    .map((line: any, index: any) => {
+      const lineNumberIndicatorPrefix = getLineNumberIndicatorPrefix(index)
+
+      const linePrefix = (
+        lineNumberPrefixPadding +
+        lineNumberIndicatorPrefix +
+        (index === targetLineIndex ? '' : getLineNumber(index))
+      ).slice(
+        -(lineNumberPrefixPadding.length + lineNumberIndicatorPrefix.length)
       )
-    } else {
-      buffer.appendToLine(
-        start.line,
-        getPadding(
-          mergedOptions.padding,
-          start.column - prevLowerTokenEndLocation.column
-        ),
-        value
+
+      return (
+        linePrefix +
+        charRepeater.get('lineNumberSeparator') +
+        line.replace('\t', '\\t')
       )
-    }
-
-    prevLowerTokenEndLocation = end
-  }
-
-  return buffer.getFormattedOutput(highlightLocation)
+    })
+    .join('\n')
 }

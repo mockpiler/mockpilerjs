@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/mockpiler/mockpilerjs/issues"
   },
-  "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/lexer#readme"
+  "homepage": "https://github.com/mockpiler/mockpilerjs/tree/master/packages/lexer#readme",
+  "dependencies": {
+    "@mockpiler/code-frame": "workspace:^0.2.0"
+  }
 }

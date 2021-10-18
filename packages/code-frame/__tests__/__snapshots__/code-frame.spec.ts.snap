@@ -6,10 +6,26 @@ exports[`code-frame generate valid code-frame 1`] = `
    6|    ]
    7|    someNestedObject: {
    8|      someNestedProperty
->  9|      test-anotherNested: property
+ > 9|      test-anotherNested: property
     |      ^^^^^^^^^^^^^^^^^^
   10|    }
   11|    anotherNestedArray: [
   12|      someNestedValue
-  13|      anotherNestedValue"
+  13|      anotherNestedValue
+"
+`;
+
+exports[`code-frame generate valid code-frame 2`] = `
+"
+   6|    ]
+   7|    someNestedObject: {
+   8|      someNestedProperty
+   9|      test-anotherNested: property
+> 10|    }
+    |    ^
+  11|    anotherNestedArray: [
+  12|      someNestedValue
+  13|      anotherNestedValue
+  14|    ]
+"
 `;

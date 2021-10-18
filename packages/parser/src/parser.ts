@@ -3,7 +3,8 @@ import {
   TokenChar,
   TokenLocation,
   TokenType,
-  scan
+  scan,
+  Lexer
 } from '@mockpiler/lexer'
 import { generateCodeFrame } from '@mockpiler/code-frame'
 
@@ -27,8 +28,17 @@ export class ParserError extends Error {
 
 export class Parser {
   index = 0
+  current: Token
 
-  constructor(public tokens: Token[]) {}
+  protected _scanIterator: Generator<Token>
+
+  constructor(public lexer: Lexer) {
+    // Reset probably re-used lexer
+    lexer.reset()
+
+    this._scanIterator = lexer.scan()
+    this.current = this._scanIterator.next().value
+  }
 
   parse() {
     return this.parseRoot()
@@ -45,7 +55,7 @@ export class Parser {
       ])
     }
 
-    const eofToken = this.current()
+    const eofToken = this.current
 
     if (eofToken.type !== TokenType.EOF) {
       this.throwUnexpected([TokenType.EOF])
@@ -67,20 +77,20 @@ export class Parser {
     }
 
     const startLocation: TokenLocation = shallowClone(
-      this.current().location.start
+      this.current.location.start
     )
     const elements: AstArrayNode['elements'] = []
 
     // Skip start token `[`
     this.next()
 
-    while (this.current() && !this.is(TokenChar.arrayEndToken)) {
+    while (this.current && !this.is(TokenChar.arrayEndToken)) {
       elements.push(this.parseSpread() ?? this.parseElement())
     }
 
     this.expect(TokenChar.arrayEndToken)
 
-    const endLocation = shallowClone(this.current().location.end)
+    const endLocation = shallowClone(this.current.location.end)
 
     // Skip end token `]`
     this.next()
@@ -102,12 +112,12 @@ export class Parser {
     if (!this.is(TokenChar.countStartToken)) {
       count = 1
     } else {
-      startLocation = shallowClone(this.current().location.start)
+      startLocation = shallowClone(this.current.location.start)
 
       // Skip leading count token `(`<-$count)
       this.next()
 
-      const token = this.current()
+      const token = this.current
 
       if (token.type === TokenType.countNumber) {
         count = token.value as number
@@ -149,20 +159,20 @@ export class Parser {
     }
 
     const startLocation: TokenLocation = shallowClone(
-      this.current().location.start
+      this.current.location.start
     )
     const properties: AstObjectNode['properties'] = []
 
     // Skip start token `{`
     this.next()
 
-    while (this.current() && !this.is(TokenChar.objectEndToken)) {
+    while (this.current && !this.is(TokenChar.objectEndToken)) {
       properties.push(this.parseSpread() ?? this.parseProperty())
     }
 
     this.expect(TokenChar.objectEndToken)
 
-    const endLocation = shallowClone(this.current().location.end)
+    const endLocation = shallowClone(this.current.location.end)
 
     // Skip end token `}`
     this.next()
@@ -210,7 +220,7 @@ export class Parser {
   }
 
   parseSpread(): AstSpreadNode | null {
-    const spreadToken = this.current()
+    const spreadToken = this.current
 
     if (spreadToken.type !== TokenType.spread) {
       return null
@@ -263,7 +273,7 @@ export class Parser {
   }
 
   parseIdentifier(): AstIdentifierNode | null {
-    const identifier = this.current()
+    const identifier = this.current
 
     if (identifier.type !== TokenType.identifier) {
       return null
@@ -288,7 +298,7 @@ export class Parser {
   }
 
   expect(token: TokenChar) {
-    if (this.current().type === TokenType.EOF) {
+    if (this.current.type === TokenType.EOF) {
       throw new ParserError('Unexpected EOF')
     }
 
@@ -310,7 +320,7 @@ export class Parser {
   }
 
   throwUnexpected(expected: string[]) {
-    const token = this.current()
+    const token = this.current
 
     this.throwWithCodeFrame(
       `Unexpected ${
@@ -321,27 +331,28 @@ export class Parser {
 
   throwWithCodeFrame(message: string) {
     throw new ParserError(
-      [null, `${generateCodeFrame(this.tokens, this.index)}`, message].join(
-        '\n\n'
-      )
+      [
+        null,
+        `${generateCodeFrame(this.lexer.input, {
+          line: this.current.location.start.line,
+          startColumn: this.current.location.start.column,
+          endColumn: this.current.location.end.column
+        })}`,
+        message
+      ].join('\n\n')
     )
   }
 
   is(value: string) {
-    return this.current().value === value
-  }
-
-  current() {
-    return this.tokens[this.index]
+    return this.current.value === value
   }
 
   next() {
-    ++this.index
-
-    return this.current()
+    const nextToken = this._scanIterator.next()
+    return (this.current = nextToken.value)
   }
 }
 
-export function parse(input: Token[] | string) {
-  return new Parser(Array.isArray(input) ? input : scan(input)).parse()
+export function parse(input: string) {
+  return new Parser(new Lexer(input)).parse()
 }

@@ -1,8 +1,9 @@
-import { scan, TokenType } from '@mockpiler/lexer'
+import type { CodeFrameLocation } from '../src'
 
-const targetIdentifierToken = 'test-anotherNested'
+const targetOneDigitLineToken = 'test-anotherNested'
+const targetTwoDigitLineToken = '}'
 
-const code = `
+export const testCode = `
   {
     someNestedArray: [
       someNestedValue
@@ -10,8 +11,8 @@ const code = `
     ]
     someNestedObject: {
       someNestedProperty
-      ${targetIdentifierToken}: property
-    }
+      ${targetOneDigitLineToken}: property
+    ${targetTwoDigitLineToken}
     anotherNestedArray: [
       someNestedValue
       anotherNestedValue
@@ -23,9 +24,21 @@ const code = `
   }
 `
 
-export const testTokens = scan(code)
+const testLines = testCode.split('\n')
 
-export const testTokenIndex = testTokens.findIndex(
-  token =>
-    token.type === TokenType.identifier && token.value === targetIdentifierToken
+const getTestCodeFrameLocation = (token: string): CodeFrameLocation => ({
+  line: testLines.findIndex(line => line.includes(token)) + 1,
+  get startColumn() {
+    return testLines[this.line - 1].indexOf(token) + 1
+  },
+  get endColumn() {
+    return this.startColumn + token.length
+  }
+})
+
+export const testOneDigitLineTokenLocation = getTestCodeFrameLocation(
+  targetOneDigitLineToken
+)
+export const testTwoDigitLineTokenLocation = getTestCodeFrameLocation(
+  targetTwoDigitLineToken
 )

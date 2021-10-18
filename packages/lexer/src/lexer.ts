@@ -1,3 +1,4 @@
+import { generateCodeFrame } from '@mockpiler/code-frame'
 import {
   ARRAY_TOKENS,
   COUNT_DIGIT_REGEX,
@@ -136,17 +137,29 @@ export class Lexer {
 
   throwUnexpected() {
     throw new LexerError(
-      `Unknown token '${this.peek()}' at ${this.line}:${this.column}`
+      [
+        null,
+        `${generateCodeFrame(this.input, {
+          line: this.line,
+          startColumn: this.column,
+          endColumn: this.column + 1
+        })}`,
+        `Unknown token '${this.peek()}' at ${this.line}:${this.column}`
+      ].join('\n\n')
     )
   }
 
-  scan() {
-    const tokens: Token[] = []
+  reset() {
+    this.index = 0
+    this.line = this.column = 1
+  }
+
+  *scan(): Generator<Token> {
     const { length } = this.input
 
     while (this.index < length) {
       if (this.is(ARRAY_TOKENS)) {
-        tokens.push(this.scanToken(TokenType.array))
+        yield this.scanToken(TokenType.array)
       } else if (this.is(TokenChar.spreadToken)) {
         if (
           !this.is(TokenChar.spreadToken, 1) ||
@@ -155,22 +168,22 @@ export class Lexer {
           this.throwUnexpected()
         }
 
-        tokens.push(this.scanSpread())
+        yield this.scanSpread()
       } else if (this.is(TokenChar.transformToken)) {
-        tokens.push(this.scanToken(TokenType.transform))
+        yield this.scanToken(TokenType.transform)
       } else if (this.is(OBJECT_TOKENS)) {
-        tokens.push(this.scanToken(TokenType.object))
+        yield this.scanToken(TokenType.object)
       } else if (this.is(COUNT_TOKENS)) {
-        tokens.push(this.scanToken(TokenType.count))
+        yield this.scanToken(TokenType.count)
       } else if (this.is(COUNT_DIGIT_REGEX)) {
         const token = this.scanRegex(TokenType.countNumber, COUNT_DIGIT_REGEX)
         token.value = parseInt(token.value as string)
 
-        tokens.push(token)
+        yield token
       } else if (this.is(TokenChar.identifierToken)) {
-        tokens.push(this.scanIdent())
+        yield this.scanIdent()
       } else if (this.is(START_IDENTIFIER_REGEX)) {
-        tokens.push(this.scanRegex(TokenType.identifier, IDENTIFIER_REGEX))
+        yield this.scanRegex(TokenType.identifier, IDENTIFIER_REGEX)
       } else if (this.is(LINE_CHAR)) {
         ++this.line
         ++this.index
@@ -189,20 +202,19 @@ export class Lexer {
       }
     }
 
-    // Push end-of-file
-    tokens.push({
+    // Send end-of-file
+    yield {
       type: TokenType.EOF,
       value: '',
       location: {
         start: this.getLocation(),
         end: this.getLocation()
       }
-    })
-
-    return tokens
+    }
   }
 }
 
+// Convenience method
 export function scan(input: string) {
-  return new Lexer(input).scan()
+  return [...new Lexer(input).scan()]
 }

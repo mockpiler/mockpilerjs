@@ -11,8 +11,8 @@ const typeCompilerPackageName = 'type-compiler'
 // Note: Here we can use fs.readdirSync, but we want
 // to keep order of packages for declaration files
 const packageNames = [
-  'lexer',
   'code-frame',
+  'lexer',
   'parser',
   'context',
   'transform',
